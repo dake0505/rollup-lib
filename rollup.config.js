@@ -1,15 +1,7 @@
 import babel from 'rollup-plugin-babel'
-import path from 'path'
-import ts from 'rollup-plugin-typescript'
 import { DEFAULT_EXTENSIONS } from '@babel/core'
-
-const getPath = _path => path.resolve(__dirname, _path)
-const extensions = ['.js', '.ts', '.tsx']
-
-const tsPlugin = ts({
-  tsconfig: getPath('./tsconfig.json'),
-  extensions
-})
+import typescript from 'rollup-plugin-typescript2';
+import tslint from "rollup-plugin-tslint";
 
 export default {
   input: './src/index.js',
@@ -26,6 +18,6 @@ export default {
       ...DEFAULT_EXTENSIONS,
       '.ts',
     ],
-  }), tsPlugin],
-  external: ['react']
+  }), typescript(), tslint()],
+  external: ['react', "react-dom"]
 }
