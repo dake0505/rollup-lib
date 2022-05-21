@@ -1,4 +1,5 @@
 import * as React from 'react';
+import type { SizeType } from '../SizeContext';
 declare const ButtonTypes: ["default", "primary"];
 export declare type ButtonType = typeof ButtonTypes[number];
 declare const ButtonShapes: ["default", "circle"];
@@ -9,6 +10,15 @@ export interface BaseButtonProps {
     type?: ButtonType;
     icon?: React.ReactNode;
     shape?: ButtonShape;
+    size?: SizeType;
+    loading?: boolean | {
+        delay?: number;
+    };
+    className?: string;
+    ghost?: boolean;
+    danger?: boolean;
+    block?: boolean;
+    children?: React.ReactNode;
 }
 export declare type AnchorButtonProps = {
     href: string;
