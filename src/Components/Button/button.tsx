@@ -1,6 +1,9 @@
 import * as React from 'react';
+import classNames from 'classnames'
 import { tuple } from '../_util/type';
+import SizeContext from '../SizeContext';
 import type { SizeType } from '../SizeContext';
+import './style/index.less'
 
 function insertSpace (child: React.ReactChild, needInserted?: boolean) {
   return child
@@ -65,15 +68,39 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (pr
     type = 'default',
     danger,
     shape = 'default',
-    children
+    children,
+    htmlType = 'button' as ButtonProps['htmlType'],
+    ...rest
   } = props
+  const size = React.useContext(SizeContext)
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const { onClick } = props;
+    (onClick as React.MouseEventHandler<HTMLButtonElement>)?.(e)
+  }
+  const sizeFullName = size
+  const sizeCls = sizeFullName
+  const classes = classNames(
+    {
+      [`${shape}`]: shape !== 'default' && shape,
+      [`${type}`]: type,
+      [`${sizeCls}`]: sizeCls,
+      ['dangerous']: !!danger
+    }
+  )
   const kids =
     children || children === 0
     ? spaceChildren(children, false)
     : null
  
   const buttonNode = (
-    <button>{kids}</button>
+    <button
+      {...(rest as NativeButtonProps)}
+      className={classes}
+      type={htmlType}
+      onClick={handleClick}
+    >
+      {kids}
+    </button>
   )
   return (
     <div>

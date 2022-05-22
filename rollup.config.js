@@ -2,6 +2,8 @@ import babel from 'rollup-plugin-babel'
 import { DEFAULT_EXTENSIONS } from '@babel/core'
 import typescript from 'rollup-plugin-typescript2';
 import tslint from "rollup-plugin-tslint";
+import less from 'rollup-plugin-less'
+import postcss from 'rollup-plugin-postcss'
 
 export default {
   input: './src/index.js',
@@ -18,6 +20,6 @@ export default {
       ...DEFAULT_EXTENSIONS,
       '.ts',
     ],
-  }), typescript(), tslint()],
+  }), typescript(), tslint(), postcss(), less()],
   external: ['react', "react-dom"]
 }

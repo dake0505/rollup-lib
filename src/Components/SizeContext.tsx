@@ -1,4 +1,7 @@
 import * as React from 'react'
+/**
+ * 封装用于解析size的Provider
+ */
 
 export type SizeType = 'small' | 'middle' | 'large' | undefined;
 
