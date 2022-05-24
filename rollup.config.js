@@ -4,6 +4,7 @@ import typescript from 'rollup-plugin-typescript2';
 import tslint from "rollup-plugin-tslint";
 import less from 'rollup-plugin-less'
 import postcss from 'rollup-plugin-postcss'
+import replace from '@rollup/plugin-replace';
 
 export default {
   input: './src/index.js',
@@ -20,6 +21,9 @@ export default {
       ...DEFAULT_EXTENSIONS,
       '.ts',
     ],
-  }), typescript(), tslint(), postcss(), less()],
+  }), typescript(), tslint(), postcss(), less(), replace({
+    'Object.defineProperty(exports, "__esModule", { value: true });': '',
+    delimiters: ['\n', '\n']
+  })],
   external: ['react', "react-dom"]
 }

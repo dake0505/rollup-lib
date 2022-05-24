@@ -3,7 +3,6 @@ import classNames from 'classnames'
 import { tuple } from '../_util/type';
 import SizeContext from '../SizeContext';
 import type { SizeType } from '../SizeContext';
-import './style/index.less'
 
 function insertSpace (child: React.ReactChild, needInserted?: boolean) {
   return child

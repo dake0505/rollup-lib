@@ -1,4 +1,7 @@
 import * as React from 'react';
+/**
+ * 封装用于解析size的Provider
+ */
 export declare type SizeType = 'small' | 'middle' | 'large' | undefined;
 declare const SizeContext: React.Context<SizeType>;
 export interface SizeContextProps {
